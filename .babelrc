@@ -1,0 +1,11 @@
+{
+    "plugins": [
+        [
+            "@bable/plugin-transform-runtime",
+            {
+                "corejs": 2,
+                "regenerator": true
+            }
+        ]
+    ]
+}
