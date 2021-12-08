@@ -1,0 +1,53 @@
+#drawerContainer {
+	height: 100vh;
+	width: 300px;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background: #eee;
+	overflow-x: hidden;
+	transition: 0.5s;
+
+	.drawerList {
+		margin-top: 30px;
+	}
+
+	a:hover {
+		color: rgb(121, 49, 49);
+	}
+}
+
+.listTitle {
+	margin: 10px 30px;
+	font-size: 22px;
+
+	.listTitleText {
+		margin-left: 10px;
+	}
+}
+
+.dot {
+	height: 15px;
+	width: 15px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.projectListActions {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.projectActionsHeading {
+	font-size: 24px;
+	margin-left: 10px;
+}
+
+.addProjectButton {
+	width: 20px;
+	height: 20px;
+	margin: 10px;
+}
