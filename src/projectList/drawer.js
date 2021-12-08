@@ -13,13 +13,6 @@ export class Drawer {
 		const projectList = new ProjectList();
 		drawer.appendChild(projectList.render());
 
-		// const projectAddButton = document.querySelector('.addProjectButton');
-		// console.log(projectAddButton);
-		// projectAddButton.addEventListener('click', () => {
-		// 	projectManager.createProject('Work');
-		// 	this.render();
-		// });
-
 		return drawer;
 	}
 
