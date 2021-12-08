@@ -16,7 +16,7 @@ export class Drawer {
 		// const projectAddButton = document.querySelector('.addProjectButton');
 		// console.log(projectAddButton);
 		// projectAddButton.addEventListener('click', () => {
-		// 	projectManager.createProject('Runescape');
+		// 	projectManager.createProject('Work');
 		// 	this.render();
 		// });
 
