@@ -1,12 +1,12 @@
+import { icons } from '../icons';
 import { Todo } from './todo';
 
 export class TodoList {
-	//Should this take a filter function instead of a project? That way it can just run the filter to pull the required todos
-	//Write a class to query from storage similar to a repository class?
 	constructor(title, todos) {
 		this.title = title;
 		this.todos = todos;
 	}
+
 	render() {
 		const todoListContainer = document.createElement('div');
 		todoListContainer.classList.add('todoList');
@@ -21,6 +21,20 @@ export class TodoList {
 			console.log(todo);
 			todoListItems.appendChild(todo.render());
 		});
+
+		const addTodoDiv = document.createElement('div');
+		addTodoDiv.classList.add('add-list-todo');
+
+		const addIcon = document.createElement('span');
+		addIcon.className = icons.add;
+		addTodoDiv.appendChild(addIcon);
+
+		const addTodoText = document.createElement('span');
+		addTodoText.classList.add('add-todo-text');
+		addTodoText.textContent = 'Add task';
+		addTodoDiv.appendChild(addTodoText);
+
+		todoListContainer.appendChild(addTodoDiv);
 
 		return todoListContainer;
 	}

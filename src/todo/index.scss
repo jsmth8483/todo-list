@@ -15,3 +15,18 @@
 .todoDesc {
 	margin-left: 10px;
 }
+
+.add-list-todo {
+	padding: 5px;
+	width: 100%;
+	opacity: 50%;
+
+	&:hover {
+		color: red;
+		opacity: 100%;
+	}
+
+	.add-todo-text {
+		margin-left: 10px;
+	}
+}

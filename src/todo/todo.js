@@ -48,6 +48,7 @@ export class Todo {
 		});
 
 		checkbox.addEventListener('click', (event) => {
+			console.log(this.todoItem);
 			this.todoItem.isCompleted
 				? this.todoItem.setCompleted(false)
 				: this.todoItem.setCompleted(true);
