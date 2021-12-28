@@ -1,27 +1,25 @@
-import { Project, ProjectList } from '.';
+import { Project } from '.';
 import { storageManager } from '../storageManager';
 
 const projectManager = (function () {
-	const projectList = new ProjectList();
-
 	function createProject(title, color) {
 		const project = new Project(title, color);
 		storageManager.storeProject(project);
 	}
 
 	function getProjects() {
-		return storageManager.getProjects();
+		const json = storageManager.getProjects();
+		return json.map((item) => Object.assign(new Project(), item));
 	}
 
-	function populateProjects() {
-		projectList.buildList(storageManager.getProjects());
+	function getProject(projectId) {
+		const projects = getProjects();
+		return projects.filter((project) => {
+			project.id == projectId;
+		});
 	}
 
-	function getProjectList() {
-		return projectList;
-	}
-
-	return { createProject, getProjects, populateProjects, getProjectList };
+	return { createProject, getProjects, getProject };
 })(storageManager);
 
 export { projectManager };

@@ -1,3 +1,4 @@
+import { Drawer } from '../drawer';
 import { projectManager } from '../drawer/projectManager';
 import { Modal } from './modal';
 
@@ -65,7 +66,7 @@ export class CreateProjectModal extends Modal {
 			console.log(colorInput.value);
 			this.createProject(nameInput.value, colorInput.value);
 			this.removeModal();
-			projectManager.populateProjects();
+			Drawer.reloadProjects();
 		});
 
 		return form;

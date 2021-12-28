@@ -1,12 +1,13 @@
+import { ProjectList } from '.';
 import { icons } from '../icons';
 import { modalManager } from '../modal/modalManager';
 import { FilteredList } from './filteredList';
 import { projectManager } from './projectManager';
 
 export class Drawer {
+	static projectList = new ProjectList();
 	constructor() {
 		this.filteredList = new FilteredList();
-		this.projectList = projectManager.getProjectList();
 	}
 	render() {
 		this.#clearDrawer();
@@ -59,7 +60,7 @@ export class Drawer {
 		const projectListActions = this.#buildProjectListActions();
 
 		projectListContainer.appendChild(projectListActions);
-		projectListContainer.appendChild(this.projectList.render());
+		projectListContainer.appendChild(Drawer.projectList.render());
 		return projectListContainer;
 	}
 
@@ -68,5 +69,10 @@ export class Drawer {
 		while (drawerContainer.firstChild) {
 			drawerContainer.removeChild(drawerContainer.firstChild);
 		}
+	}
+
+	static reloadProjects() {
+		const projects = projectManager.getProjects();
+		Drawer.projectList.buildList(projects);
 	}
 }

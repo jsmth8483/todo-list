@@ -1,9 +1,11 @@
+import { v4 as uuid } from 'uuid';
+
 export class TodoItem {
-	constructor(title, description, dueDate, priority) {
+	constructor(title, dueDate, project) {
+		this.id = uuid();
 		this.title = title;
-		this.description = description;
 		this.dueDate = dueDate;
-		this.priority = priority;
+		this.project = project;
 		this.isCompleted = false;
 	}
 

@@ -1,19 +1,15 @@
-import { Project } from './drawer';
-import { TodoItem } from './todo/todoItem';
-
-const storageManager = (function () {
+const storageManager = (function storageManager() {
 	function getProjects() {
-		if (localStorage.hasOwnProperty('projects')) {
-			const json = JSON.parse(localStorage.getItem('projects'));
-			return json.map((item) => Object.assign(new Project(), item));
+		const projectsJSON = localStorage.getItem('projects');
+		if (projectsJSON) {
+			return JSON.parse(projectsJSON);
 		}
 		return [];
 	}
 
 	function storeProject(project) {
-		if (localStorage.hasOwnProperty('projects')) {
+		if (localStorage.getItem('projects')) {
 			const projects = getProjects();
-			console.log(projects);
 			projects.push(project);
 			localStorage.setItem('projects', JSON.stringify(projects));
 		} else {
@@ -24,20 +20,25 @@ const storageManager = (function () {
 	}
 
 	function getTodos() {
-		if (localStorage.hasOwnProperty('todos')) {
-			const json = JSON.parse(localStorage.getItem('todos'));
-			const todos = json.map((item) => Object.assign(new TodoItem(), item));
-			return todos;
+		if (localStorage.getItem('todos')) {
+			return JSON.parse(localStorage.getItem('todos'));
 		}
 		return [];
 	}
 
 	function storeTodo(todo) {
-		if (localStorage.hasOwnProperty('todos')) {
+		if (localStorage.getItem('todos')) {
 			const todos = getTodos();
 			console.log(todos);
-			todos.push(todo);
+			const existingTodo = todos.find((t) => t.id == todo.id);
+			if (existingTodo) {
+				todos[todos.indexOf(existingTodo)] = todo;
+			} else {
+				todos.push(todo);
+			}
+
 			localStorage.setItem('todos', JSON.stringify(todos));
+			console.log(todos);
 		} else {
 			let todos = [];
 			todos.push(todo);

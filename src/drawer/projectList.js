@@ -31,6 +31,7 @@ export class ProjectList {
 		const projectList = document.querySelector('.projectList');
 
 		this.#clearProjectList();
+
 		projects.forEach((project) => {
 			projectList.appendChild(
 				this.#buildListItem(project.title, project.color)

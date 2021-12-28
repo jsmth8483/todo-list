@@ -1,20 +1,37 @@
+import { todoManager } from './todoManager';
+import { formatRelative } from 'date-fns';
+
 export class Todo {
 	constructor(todoItem) {
 		this.todoItem = todoItem;
 	}
 	render() {
 		const todo = this.#buildTodo();
-		const checkbox = this.#buildCheckbox();
-		const title = this.#buildTitle();
 
-		todo.appendChild(checkbox);
-		todo.appendChild(title);
 		return todo;
 	}
 
 	#buildTodo() {
 		const todo = document.createElement('div');
 		todo.classList.add('todo');
+
+		const titleRow = document.createElement('div');
+		titleRow.classList.add('todo-title-row');
+		const checkbox = this.#buildCheckbox();
+		const title = this.#buildTitle();
+		titleRow.appendChild(checkbox);
+		titleRow.appendChild(title);
+
+		const detailsRow = document.createElement('div');
+		detailsRow.classList.add('todo-details-row');
+		const projectLabel = this.#buildProjectLabel();
+		const dueDateLabel = this.#buildDueDateLabel();
+		detailsRow.appendChild(dueDateLabel);
+		detailsRow.appendChild(projectLabel);
+
+		todo.appendChild(titleRow);
+		todo.appendChild(detailsRow);
+
 		return todo;
 	}
 
@@ -48,14 +65,13 @@ export class Todo {
 		});
 
 		checkbox.addEventListener('click', (event) => {
-			console.log(this.todoItem);
 			this.todoItem.isCompleted
 				? this.todoItem.setCompleted(false)
 				: this.todoItem.setCompleted(true);
 			event.target.className = this.todoItem.isCompleted
 				? 'far fa-check-square'
 				: 'far fa-square';
-			console.log(this.todoItem);
+			todoManager.updateTodo(this.todoItem);
 		});
 
 		return checkbox;
@@ -66,5 +82,22 @@ export class Todo {
 		todoTitle.classList.add('todoDesc');
 		todoTitle.textContent = this.todoItem.title;
 		return todoTitle;
+	}
+
+	#buildDueDateLabel() {
+		const dueDateLabel = document.createElement('span');
+		dueDateLabel.classList.add('todo-due-date-label');
+		dueDateLabel.textContent = formatRelative(
+			new Date(this.todoItem.dueDate),
+			new Date()
+		);
+		return dueDateLabel;
+	}
+
+	#buildProjectLabel() {
+		const projectLabel = document.createElement('span');
+		projectLabel.classList.add('todo-project-label');
+		projectLabel.textContent = this.todoItem.project;
+		return projectLabel;
 	}
 }
