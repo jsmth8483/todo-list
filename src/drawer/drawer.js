@@ -12,7 +12,7 @@ export class Drawer {
 	render() {
 		this.#clearDrawer();
 		const drawer = document.createElement('div');
-		drawer.classList.add('drawerList');
+		drawer.classList.add('drawer-list');
 
 		const filteredListElem = this.filteredList.render();
 
@@ -26,10 +26,10 @@ export class Drawer {
 
 	#buildProjectListActions() {
 		const projectListActions = document.createElement('div');
-		projectListActions.classList = 'projectListActions';
+		projectListActions.classList = 'project-list-actions';
 
 		const projectActionsHeading = document.createElement('span');
-		projectActionsHeading.classList.add('projectActionsHeading');
+		projectActionsHeading.classList.add('project-actions-heading');
 		projectActionsHeading.textContent = 'Projects';
 		projectListActions.appendChild(projectActionsHeading);
 
@@ -44,7 +44,7 @@ export class Drawer {
 		const i = document.createElement('i');
 		i.className = icons.add;
 		button.appendChild(i);
-		button.classList.add('addProjectButton');
+		button.classList.add('add-project-button');
 
 		button.addEventListener('click', () => {
 			modalManager.displayCreateProjectModal();
@@ -55,7 +55,7 @@ export class Drawer {
 
 	#buildProjectListContainer() {
 		const projectListContainer = document.createElement('div');
-		projectListContainer.classList.add('projectListContainer');
+		projectListContainer.classList.add('project-list-container');
 
 		const projectListActions = this.#buildProjectListActions();
 
@@ -65,7 +65,7 @@ export class Drawer {
 	}
 
 	#clearDrawer() {
-		const drawerContainer = document.querySelector('#drawerContainer');
+		const drawerContainer = document.querySelector('#drawer-container');
 		while (drawerContainer.firstChild) {
 			drawerContainer.removeChild(drawerContainer.firstChild);
 		}

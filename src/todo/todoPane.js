@@ -88,7 +88,7 @@ export class TodoPane {
 	}
 
 	clearTodoContainer() {
-		const todoPaneContainer = document.querySelector('#todoPaneContainer');
+		const todoPaneContainer = document.querySelector('#todo-pane-container');
 		while (todoPaneContainer.firstChild) {
 			todoPaneContainer.removeChild(todoPaneContainer.firstChild);
 		}

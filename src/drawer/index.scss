@@ -8,7 +8,7 @@
 	overflow-x: hidden;
 	transition: 0.5s;
 
-	.drawerList {
+	.drawer-list {
 		margin-top: 30px;
 	}
 
@@ -17,36 +17,28 @@
 	}
 }
 
-.listTitle {
+.list-title {
 	margin: 10px 30px;
 	font-size: 22px;
 
-	.listTitleText {
+	.list-title-text {
 		margin-left: 10px;
 	}
 }
 
-.dot {
-	height: 15px;
-	width: 15px;
-	background-color: #bbb;
-	border-radius: 50%;
-	display: inline-block;
-}
-
-.projectListActions {
+.project-list-actions {
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.projectActionsHeading {
+.project-actions-heading {
 	font-size: 24px;
 	margin-left: 10px;
 }
 
-.addProjectButton {
+.add-project-button {
 	width: 20px;
 	height: 20px;
 	margin: 10px;

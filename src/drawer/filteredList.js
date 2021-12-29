@@ -4,10 +4,10 @@ import { TodoPane } from '../todo';
 export class FilteredList {
 	render() {
 		const filteredList = document.createElement('div');
-		filteredList.classList.add('filteredList');
+		filteredList.classList.add('filtered-list');
 		const inbox = this.buildListItem('Inbox', icons.inbox);
 		inbox.addEventListener('click', () => {
-			const todoPaneContainer = document.querySelector('#todoPaneContainer');
+			const todoPaneContainer = document.querySelector('#todo-pane-container');
 			const todoPane = new TodoPane('Inbox');
 			TodoPane.setFilter('', '');
 			todoPaneContainer.appendChild(todoPane.render());
@@ -15,7 +15,7 @@ export class FilteredList {
 		});
 		const today = this.buildListItem('Today', icons.calendarDay);
 		today.addEventListener('click', () => {
-			const todoPaneContainer = document.querySelector('#todoPaneContainer');
+			const todoPaneContainer = document.querySelector('#todo-pane-container');
 			const todoPane = new TodoPane('Today');
 			TodoPane.setFilter('date', 'today');
 			todoPaneContainer.appendChild(todoPane.render());
@@ -23,7 +23,7 @@ export class FilteredList {
 		});
 		const thisWeek = this.buildListItem('This week', icons.calendarWeek);
 		thisWeek.addEventListener('click', () => {
-			const todoPaneContainer = document.querySelector('#todoPaneContainer');
+			const todoPaneContainer = document.querySelector('#todo-pane-container');
 			const todoPane = new TodoPane('This week');
 			TodoPane.setFilter('date', 'week');
 			todoPaneContainer.appendChild(todoPane.render());
@@ -39,7 +39,7 @@ export class FilteredList {
 
 	buildListItem(title, iconClass) {
 		const listTitleDiv = document.createElement('div');
-		listTitleDiv.classList.add('listTitle');
+		listTitleDiv.classList.add('list-title');
 
 		const iconSpan = document.createElement('span');
 		const icon = document.createElement('i');
@@ -47,7 +47,7 @@ export class FilteredList {
 		iconSpan.appendChild(icon);
 
 		const listTitleText = document.createElement('a');
-		listTitleText.classList.add('listTitleText');
+		listTitleText.classList.add('list-title-text');
 		listTitleText.textContent = title;
 
 		listTitleDiv.appendChild(iconSpan);

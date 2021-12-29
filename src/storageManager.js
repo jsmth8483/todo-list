@@ -29,7 +29,6 @@ const storageManager = (function storageManager() {
 	function storeTodo(todo) {
 		if (localStorage.getItem('todos')) {
 			const todos = getTodos();
-			console.log(todos);
 			const existingTodo = todos.find((t) => t.id == todo.id);
 			if (existingTodo) {
 				todos[todos.indexOf(existingTodo)] = todo;
@@ -38,7 +37,6 @@ const storageManager = (function storageManager() {
 			}
 
 			localStorage.setItem('todos', JSON.stringify(todos));
-			console.log(todos);
 		} else {
 			let todos = [];
 			todos.push(todo);

@@ -21,7 +21,7 @@ export class TodoCreationPrompt {
 
 		const projectInput = document.createElement('select');
 		projectInput.classList.add('project-input');
-		projectInput.id = 'projectInput';
+		projectInput.id = 'project-input';
 		let inboxOption = document.createElement('option');
 		inboxOption.text = 'Inbox';
 		projectInput.add(inboxOption);

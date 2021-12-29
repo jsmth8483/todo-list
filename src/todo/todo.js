@@ -79,7 +79,7 @@ export class Todo {
 
 	#buildTitle() {
 		const todoTitle = document.createElement('span');
-		todoTitle.classList.add('todoDesc');
+		todoTitle.classList.add('todo-desc');
 		todoTitle.textContent = this.todoItem.title;
 		return todoTitle;
 	}
@@ -98,6 +98,7 @@ export class Todo {
 		const projectLabel = document.createElement('span');
 		projectLabel.classList.add('todo-project-label');
 		projectLabel.textContent = this.todoItem.project;
+
 		return projectLabel;
 	}
 }

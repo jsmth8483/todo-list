@@ -9,14 +9,14 @@ const app = () => {
 };
 
 function loadDrawer() {
-	const drawerContainer = document.querySelector('#drawerContainer');
+	const drawerContainer = document.querySelector('#drawer-container');
 	const drawer = new Drawer();
 	drawerContainer.appendChild(drawer.render());
 	Drawer.reloadProjects();
 }
 
 function loadTodoPane() {
-	const todoListContainer = document.querySelector('#todoPaneContainer');
+	const todoListContainer = document.querySelector('#todo-pane-container');
 	const todoPane = new TodoPane('Inbox');
 	todoListContainer.appendChild(todoPane.render());
 	TodoPane.reloadTodos();
