@@ -60,6 +60,7 @@ export class CreateProjectModal extends Modal {
 
 		const submitButton = document.createElement('input');
 		submitButton.type = 'submit';
+		submitButton.classList.add('button');
 		form.appendChild(submitButton);
 		form.addEventListener('submit', (event) => {
 			event.preventDefault();

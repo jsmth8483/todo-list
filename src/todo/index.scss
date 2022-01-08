@@ -1,16 +1,26 @@
+$background: #121212;
+$surface: #212121;
+$onBackground: #ffffff;
+$primary: #bb86fc;
+$secondary: #00897b;
+
 .todo-pane {
 	margin: 20px;
 }
 
 .todo {
-	/*background-color: #eee;*/
-	padding: 5px;
+	padding: 8px 5px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
 	&:hover {
-		background-color: #eee;
+		background-color: $surface;
+	}
+
+	.checkbox {
+		opacity: 0.5;
 	}
 }
 
@@ -33,13 +43,15 @@
 }
 
 .add-todo-container {
+	margin-top: 10px;
+
 	.add-list-todo {
 		padding: 5px;
 		width: 100%;
 		opacity: 50%;
 
 		&:hover {
-			color: red;
+			color: $secondary;
 			opacity: 100%;
 		}
 
@@ -55,22 +67,22 @@
 		border-radius: 5px;
 		display: flex;
 		flex-direction: column;
+		background-color: $surface;
 
 		input,
 		select {
-			border: 1px solid rgba(0, 0, 0, 0.1);
+			border: none;
+			outline: none;
 			border-radius: 5px;
-			background-color: white;
+			background-color: $surface;
 			padding: 5px;
+			color: $onBackground;
 		}
 
 		.todo-title-input {
 			width: 95%;
 			margin: 5px;
-
-			&:focus {
-				border: none;
-			}
+			outline: none;
 		}
 
 		.due-date-input {
@@ -80,15 +92,5 @@
 		.todo-optional-fields {
 			display: flex;
 		}
-	}
-
-	.button {
-		margin-top: 10px;
-		margin-right: 10px;
-		background-color: rgb(0, 132, 255);
-		border: none;
-		border-radius: 5px;
-		color: white;
-		padding: 8px;
 	}
 }

@@ -39,39 +39,69 @@ export class TodoPane {
 			const todoCreationPrompt = new TodoCreationPrompt();
 			addTodoContainer.appendChild(todoCreationPrompt.render());
 
-			const addTodoButton = document.createElement('button');
-			addTodoButton.classList.add('add-todo-button', 'button');
-			addTodoButton.textContent = 'Add Todo';
-			addTodoButton.addEventListener('click', () => {
-				const todoTitle = document.querySelector('.todo-title-input');
-				const todoDueDate = document.querySelector('.due-date-input');
-				const todoProject = document.querySelector('.project-input');
-
-				todoManager.createTodo(
-					todoTitle.value,
-					todoDueDate.value,
-					todoProject.value
-				);
-				todoTitle.value = '';
-				todoDueDate.value = '';
-				TodoPane.reloadTodos();
-			});
+			const addTodoButton = this.#buildAddTodoButton();
 			addTodoContainer.appendChild(addTodoButton);
 
-			const cancelButton = document.createElement('button');
-			cancelButton.classList.add('close-add-todo', 'button');
-			cancelButton.textContent = 'Cancel';
-			cancelButton.addEventListener('click', () => {
-				while (addTodoContainer.firstChild) {
-					addTodoContainer.removeChild(addTodoContainer.firstChild);
-				}
-				const addTodoDiv = this.#buildAddTodoDiv();
-				addTodoContainer.appendChild(addTodoDiv);
-			});
+			const cancelButton = this.#buildCancelAddTodoButton();
 			addTodoContainer.appendChild(cancelButton);
 		});
 		addTodoContainer.appendChild(addTodoDiv);
 		return addTodoContainer;
+	}
+
+	#buildAddTodoButton() {
+		const addTodoButton = document.createElement('button');
+		addTodoButton.classList.add('add-todo-button', 'button');
+		addTodoButton.textContent = 'Add Todo';
+		addTodoButton.addEventListener('click', () => {
+			const todoTitle = document.querySelector('.todo-title-input');
+			const todoDueDate = document.querySelector('.due-date-input');
+			const todoProject = document.querySelector('.project-input');
+			console.log(todoDueDate.value);
+			todoManager.createTodo(
+				todoTitle.value,
+				todoDueDate.value,
+				todoProject.value
+			);
+			todoTitle.value = '';
+			todoDueDate.value = '';
+			TodoPane.reloadTodos();
+		});
+		return addTodoButton;
+	}
+
+	#buildCancelAddTodoButton() {
+		const cancelButton = document.createElement('button');
+		cancelButton.classList.add('close-add-todo', 'button');
+		cancelButton.textContent = 'Cancel';
+		cancelButton.addEventListener('click', () => {
+			this.#showAddTaskButton();
+		});
+		return cancelButton;
+	}
+
+	#showAddTaskButton() {
+		const addTodoContainer = document.querySelector('.add-todo-container');
+		while (addTodoContainer.firstChild) {
+			addTodoContainer.removeChild(addTodoContainer.firstChild);
+		}
+		const addTodoDiv = this.#buildAddTodoDiv();
+		addTodoContainer.appendChild(addTodoDiv);
+	}
+
+	#showTodoCreationPrompt() {
+		const addTodoContainer = document.querySelector('.add-todo-container');
+		while (addTodoContainer.firstChild) {
+			addTodoContainer.removeChild(addTodoContainer.firstChild);
+		}
+		const todoCreationPrompt = new TodoCreationPrompt();
+		addTodoContainer.appendChild(todoCreationPrompt.render());
+
+		const addTodoButton = this.#buildAddTodoButton();
+		addTodoContainer.appendChild(addTodoButton);
+
+		const cancelButton = this.#buildCancelAddTodoButton();
+		addTodoContainer.appendChild(cancelButton);
 	}
 
 	#buildAddTodoDiv() {
@@ -84,6 +114,9 @@ export class TodoPane {
 		addTodoText.classList.add('add-todo-text');
 		addTodoText.textContent = 'Add task';
 		addTodoDiv.appendChild(addTodoText);
+		addTodoDiv.addEventListener('click', () => {
+			this.#showTodoCreationPrompt();
+		});
 		return addTodoDiv;
 	}
 
@@ -101,7 +134,6 @@ export class TodoPane {
 
 	static reloadTodos() {
 		let todos;
-		console.log(TodoPane.filterBy, TodoPane.filter);
 		if (TodoPane.filterBy == 'date') {
 			if (TodoPane.filter == 'week') {
 				const fromDate = new Date();
@@ -114,9 +146,11 @@ export class TodoPane {
 				const toDate = new Date();
 				todos = todoManager.getTodosByDate(fromDate, toDate);
 			}
+		} else if (TodoPane.filterBy == 'project') {
+			todos = todoManager.getTodosByProject(TodoPane.filter);
 		} else {
-			console.log('none');
 			todos = todoManager.getTodos();
+			console.log(todos);
 		}
 
 		TodoPane.todoList.buildList(todos);

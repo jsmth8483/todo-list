@@ -14,9 +14,12 @@ const projectManager = (function () {
 
 	function getProject(projectId) {
 		const projects = getProjects();
-		return projects.filter((project) => {
-			project.id == projectId;
+		const filtered = projects.find((project) => {
+			console.log(project.id, projectId);
+			return project.id == projectId;
 		});
+
+		return filtered;
 	}
 
 	return { createProject, getProjects, getProject };

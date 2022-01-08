@@ -24,12 +24,14 @@ export class TodoCreationPrompt {
 		projectInput.id = 'project-input';
 		let inboxOption = document.createElement('option');
 		inboxOption.text = 'Inbox';
+		inboxOption.value = '';
 		projectInput.add(inboxOption);
 		const projects = projectManager.getProjects();
 		console.log(projects);
 		projects.map((project) => {
 			const option = document.createElement('option');
 			option.text = project.title;
+			option.value = project.id;
 			projectInput.add(option);
 		});
 

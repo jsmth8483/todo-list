@@ -1,3 +1,5 @@
+import { TodoPane } from '../todo';
+
 export class ProjectList {
 	//projects = ['Work', 'School'];
 	render() {
@@ -33,9 +35,17 @@ export class ProjectList {
 		this.#clearProjectList();
 
 		projects.forEach((project) => {
-			projectList.appendChild(
-				this.#buildListItem(project.title, project.color)
-			);
+			const projectElement = this.#buildListItem(project.title, project.color);
+			projectElement.addEventListener('click', () => {
+				const todoPaneContainer = document.querySelector(
+					'#todo-pane-container'
+				);
+				const todoPane = new TodoPane(project.title);
+				TodoPane.setFilter('project', project.id);
+				todoPaneContainer.appendChild(todoPane.render());
+				TodoPane.reloadTodos();
+			});
+			projectList.appendChild(projectElement);
 		});
 	}
 

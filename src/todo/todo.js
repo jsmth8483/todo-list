@@ -1,5 +1,6 @@
 import { todoManager } from './todoManager';
 import { formatRelative } from 'date-fns';
+import { projectManager } from '../drawer/projectManager';
 
 export class Todo {
 	constructor(todoItem) {
@@ -42,35 +43,36 @@ export class Todo {
 			: 'far fa-square';
 		checkbox.classList.add('checkbox');
 
-		checkbox.addEventListener('mouseover', (event) => {
+		checkbox.addEventListener('mouseover', () => {
 			if (
-				event.target.classList.contains('fa-square') &&
+				checkbox.classList.contains('fa-square') &&
 				!this.todoItem.isCompleted
 			) {
-				event.target.classList.remove('fa-square');
-				event.target.classList.add('fa-check-square');
+				checkbox.classList.remove('fa-square');
+				checkbox.classList.add('fa-check-square');
 			}
 		});
-		checkbox.addEventListener('mouseout', (event) => {
+		checkbox.addEventListener('mouseout', () => {
 			if (
-				event.target.classList.contains('fa-square') &&
+				checkbox.classList.contains('fa-square') &&
 				this.todoItem.isCompleted
 			) {
-				event.target.classList.remove('fa-square');
-				event.target.classList.add('fa-check-square');
+				checkbox.classList.remove('fa-square');
+				checkbox.classList.add('fa-check-square');
 			} else if (!this.todoItem.isCompleted) {
-				event.target.classList.remove('fa-check-square');
-				event.target.classList.add('fa-square');
+				checkbox.classList.remove('fa-check-square');
+				checkbox.classList.add('fa-square');
 			}
 		});
 
-		checkbox.addEventListener('click', (event) => {
+		checkbox.addEventListener('click', () => {
 			this.todoItem.isCompleted
 				? this.todoItem.setCompleted(false)
 				: this.todoItem.setCompleted(true);
-			event.target.className = this.todoItem.isCompleted
+			checkbox.className = this.todoItem.isCompleted
 				? 'far fa-check-square'
 				: 'far fa-square';
+			checkbox.classList.add('checkbox');
 			todoManager.updateTodo(this.todoItem);
 		});
 
@@ -87,17 +89,26 @@ export class Todo {
 	#buildDueDateLabel() {
 		const dueDateLabel = document.createElement('span');
 		dueDateLabel.classList.add('todo-due-date-label');
-		dueDateLabel.textContent = formatRelative(
-			new Date(this.todoItem.dueDate),
-			new Date()
-		);
+		if (this.todoItem.dueDate) {
+			dueDateLabel.textContent = formatRelative(
+				new Date(this.todoItem.dueDate),
+				new Date()
+			);
+		}
 		return dueDateLabel;
 	}
 
 	#buildProjectLabel() {
 		const projectLabel = document.createElement('span');
 		projectLabel.classList.add('todo-project-label');
-		projectLabel.textContent = this.todoItem.project;
+		console.log(this.todoItem.project);
+		const project = projectManager.getProject(this.todoItem.project);
+		console.log(project);
+		if (project) {
+			projectLabel.textContent = project.title;
+		} else {
+			projectLabel.textContent = 'Inbox';
+		}
 
 		return projectLabel;
 	}

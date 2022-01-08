@@ -20,7 +20,9 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.16.5",
     "@babel/runtime-corejs2": "^7.16.3",
+    "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "eslint": "^8.5.0",
     "eslint-config-airbnb-base": "^15.0.0",

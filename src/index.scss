@@ -1,6 +1,13 @@
+$background: #121212;
+$background-secondary: #212121;
+$onBackground: #ffffff;
+$secondary: #00897b;
+
 body {
 	margin: 0;
 	padding: 0;
+	background-color: $background;
+	color: $onBackground;
 }
 
 #main {
@@ -18,4 +25,14 @@ body {
 	background-color: #bbb;
 	border-radius: 50%;
 	display: inline-block;
+}
+
+.button {
+	margin-top: 10px;
+	margin-right: 10px;
+	background-color: $secondary;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	padding: 8px;
 }

@@ -9,12 +9,10 @@ export class TodoList {
 	#buildTodoListItems(todos) {
 		const todoListItemsDiv = document.createElement('div');
 		todos.forEach((todoItem) => {
-			// if (!todoItem.isCompleted) {
-			// 	const todo = new Todo(todoItem);
-			// 	todoListItemsDiv.appendChild(todo.render());
-			// }
-			const todo = new Todo(todoItem);
-			todoListItemsDiv.appendChild(todo.render());
+			if (!todoItem.isCompleted) {
+				const todo = new Todo(todoItem);
+				todoListItemsDiv.appendChild(todo.render());
+			}
 		});
 		return todoListItemsDiv;
 	}
